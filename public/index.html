@@ -464,6 +464,9 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
 .expr .head,.ped .head{max-width:none}
 .expr .head p,.ped .head p{max-width:none}
 @media(min-width:1100px){.expr .head p,.ped .head p{white-space:nowrap}.expr .head p{font-size:clamp(.78rem,1.12vw,1.05rem)}.ped .head p{font-size:clamp(.72rem,.98vw,.85rem)}}
+.bwrap .ov{visibility:hidden;clip-path:circle(50%);-webkit-clip-path:circle(50%);transition:opacity .25s,transform .5s var(--pop),visibility 0s .25s}
+.bwrap .ov.on{visibility:visible;transition:opacity .25s,transform .5s var(--pop),visibility 0s}
+.bwrap .ov:not(.on) .rg{animation:none}
 </style>
 <link rel="icon" type="image/webp" href="img/multi.webp">
 <link rel="stylesheet" href="game.css">
