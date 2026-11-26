@@ -424,6 +424,27 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
 @media(max-width:560px){.dgrid{grid-template-columns:1fr}.dchips{grid-template-columns:1fr 1fr}.dchip{padding:8px 12px}.tabs{max-width:100%}.tabs button{padding:0 11px;font-size:.88rem;white-space:nowrap}}
 .rail[hidden],.dl[hidden]{display:none!important}
 .story .ask{margin-top:18px;font-size:1.08em}
+
+/* ---- v4: regras com 7 passos ---- */
+.steps li:nth-child(5){--c:var(--navy)}
+.steps li:nth-child(5)::before{background:conic-gradient(var(--y),var(--g),var(--b),var(--r),var(--y));color:#fff;text-shadow:0 0 3px #24264d,0 0 3px #24264d,0 0 3px #24264d}
+.steps li:nth-child(6){--c:var(--g);--tc:var(--ink)}
+.steps li:nth-child(7){--c:var(--navy);--tc:#fff}
+@media(min-width:901px){
+  .rgrid{grid-template-columns:1fr;gap:18px;height:auto}
+  .phases{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto;gap:16px}
+  .phase{padding:12px 18px}
+  .steps{grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:auto;gap:14px!important;align-content:start}
+  .steps li{grid-column:span 4;padding:12px 16px!important}
+  .steps li:nth-child(-n+4){grid-column:span 3}
+}
+
+/* ---- v4: tabuleiro inteiro, sem recorte circular ---- */
+.bwrap,.bwrap.zoom{border-radius:28px!important}
+.bwrap img{border-radius:28px!important;border:0!important;background:#fff;box-shadow:0 0 0 6px var(--gold),0 30px 60px rgba(0,0,0,.4)}
+.bwrap .ov{inset:0!important;width:100%!important;height:100%!important;border-radius:28px!important}
+.board-sec .wrap{overflow:visible}
+.bwrap{margin-block:10px}
 </style>
 <link rel="icon" type="image/webp" href="img/multi.webp">
 <link rel="stylesheet" href="game.css">
@@ -439,7 +460,7 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
       <a href="#jogar">Jogar</a>
       <a href="#regras">Regras</a>
       <a href="#tabuleiro">Tabuleiro</a>
-      <a href="#fundamento">Fundamento</a>
+      <a href="#fundamento">Fundamentação</a>
       <a href="#cartas">Cartas</a>
       <a href="#materiais">Materiais</a>
       <a href="#pedagogia">Porquê</a>
@@ -526,6 +547,7 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
         <li class="rv"><h3>Escolhe o caminho</h3><p>Anda as casas que saíram, pelos raios ou pelo círculo, para o lado que quiseres.</p></li>
         <li class="rv"><h3>Lê a carta</h3><p>Os alunos leem a carta da cor da casa, com a ajuda do professor, e a equipa realiza o desafio. Antes, diz que emoção é e quando já a sentiu.</p></li>
         <li class="rv"><h3>Casa normal</h3><p>Cumprido o desafio, a equipa lança o dado outra vez. Só uma vez por jogada.</p></li>
+        <li class="rv"><h3>Casa especial</h3><p>Nesta casa estão reunidas todas as emoções. A equipa que calhar nela escolhe qual a emoção que quer jogar.</p></li>
         <li class="rv"><h3>Casa-pote</h3><p>Cumprido o desafio, ganha a bola dessa cor. Se já a tiver, conta como casa normal.</p></li>
         <li class="rv"><h3>Passa a vez</h3><p>A carta volta ao fundo do monte da sua cor e joga a equipa seguinte.</p></li>
       </ol>
@@ -538,7 +560,7 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
     <div class="bwrap rv" id="bwrap"><img id="bimg" src="img/tabuleiro.webp" alt="O tabuleiro: um círculo de casas, cada uma com um monstro, e cinco raios que vão dar ao centro" width="1300" height="1300" loading="lazy"><svg class="ov" id="ov" viewBox="0 0 2400 2400" aria-hidden="true"></svg></div>
     <div class="rv">
       <h2>O tabuleiro</h2>
-      <p style="margin-top:14px">Um caminho em círculo, com raios que vão dar ao centro, onde está o Monstro. Cada casa é um monstro de uma emoção e esconde um desafio.</p>
+      <p style="margin-top:14px">Um caminho em círculo, com raios que vão dar ao centro. Cada casa é um monstro de uma emoção e esconde um desafio.</p>
       <ul class="legend">
         <li data-k="normal" tabindex="0"><span class="sw" style="background:#fff"><img src="img/m_y.webp" alt="" width="28" height="30"></span><div><b>Casa normal</b>Cumpres o desafio e podes lançar o dado outra vez.</div></li>
         <li data-k="pote" tabindex="0"><span class="sw" style="background:#fff"><svg viewBox="0 0 40 40" width="30" height="30" aria-hidden="true"><circle cx="20" cy="20" r="15" fill="#2f7fe0" stroke="#24264d" stroke-width="3"/><path d="M11 16a10 10 0 0 1 9-7" stroke="#b3d4ff" stroke-width="3" stroke-linecap="round" fill="none"/></svg></span><div><b>Casa-pote</b>Cumpres o desafio e ganhas a bola da cor da casa.</div></li>
@@ -563,7 +585,7 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
 
 <section class="fund" id="fundamento">
   <div class="wrap">
-    <div class="head rv"><h2>Fundamento teórico</h2><p>As quatro expressões nas Aprendizagens Essenciais do 1.º Ciclo (2018) e a sua presença no jogo.</p></div>
+    <div class="head rv"><h2>Fundamentação teórica</h2><p>As quatro expressões nas Aprendizagens Essenciais do 1.º Ciclo (2018) e a sua presença no jogo.</p></div>
     <div class="ftabs" role="tablist" aria-label="Área de expressão">
       <button role="tab" aria-selected="true" data-i="0" style="--c:var(--r);--tc:#fff">Artes Visuais</button>
       <button role="tab" aria-selected="false" data-i="1" style="--c:var(--b);--tc:#fff">Música</button>
@@ -631,7 +653,7 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
   <div class="wrap">
     <div class="head rv">
       <h2>Porque é que funciona</h2>
-      <p>Aos seis anos as crianças começam a dar nome ao que sentem e a perceber que os outros sentem coisas diferentes. As regras são simples e cada carta tem uma imagem, por isso o jogo cabe numa turma do 1.º ano.</p>
+      <p>Aos seis anos as crianças começam a dar nome ao que sentem e a perceber que os outros sentem coisas diferentes. As regras são simples e cada carta tem uma imagem.</p>
     </div>
     <div class="comp">
       <article class="rv"><svg viewBox="0 0 48 48" fill="none" stroke="#24264d" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 5c-8 0-15 6-15 14 0 5 3 8 6 10v6c0 3 2 5 5 5h8c3 0 5-2 5-5v-6c3-2 6-5 6-10 0-8-7-14-15-14z"/><path d="M19 41h10M24 18v8M20 22h8"/></svg><h3>Criatividade</h3><p>Cores, formas, materiais e técnicas para imaginar soluções e expressar ideias próprias.</p></article>
@@ -640,7 +662,7 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
       <article class="rv"><svg viewBox="0 0 48 48" fill="none" stroke="#24264d" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="20" cy="20" r="13"/><path d="M30 30l13 13M16 18a5 5 0 019-1c0 3-4 3-4 6M21 28v.5"/></svg><h3>Pensamento crítico</h3><p>Observar, interpretar, perguntar e argumentar a partir do que cada criança vê e sente.</p></article>
     </div>
     <p style="margin-bottom:14px;font-weight:800">Articula-se com:</p>
-    <div class="links"><span>Artes Visuais</span><span>Música</span><span>Expressão Dramática/Teatro</span><span>Educação Física</span><span>Perfil dos Alunos: Sensibilidade Estética e Artística</span></div>
+    <div class="links"><span>Artes Visuais</span><span>Música</span><span>Expressão Dramática/Teatro</span><span>Educação Física</span><span>Perfil dos Alunos à Saída da Escolaridade Obrigatória</span><span>Aprendizagens Essenciais</span></div>
   </div>
 </section>
 
