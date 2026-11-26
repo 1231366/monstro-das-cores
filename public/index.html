@@ -442,6 +442,8 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
 /* ---- v4: tabuleiro circular, aro dourado completo ---- */
 .board-sec .wrap{overflow:visible}
 .bwrap{margin-block:10px}
+@media(min-width:901px){.mats .wrap{grid-template-columns:.7fr 1.3fr;gap:44px}}
+@media(min-width:901px) and (max-height:780px){.checks{gap:6px}.checks label{min-height:44px;padding-block:6px;gap:12px;font-size:.92rem;line-height:1.35}.mats .sub{margin-bottom:10px;font-size:.95rem}}
 </style>
 <link rel="icon" type="image/webp" href="img/multi.webp">
 <link rel="stylesheet" href="game.css">
@@ -616,16 +618,16 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
     <div class="box rv"><img src="img/caixa.webp" alt="Frente da caixa do jogo A Viagem do Monstro das Cores" width="1200" height="800" loading="lazy"></div>
     <div class="rv">
       <h2>O que vais precisar</h2>
-      <p class="sub">Marca o que já tens. O tabuleiro, os peões e as cartas estão <a href="#cartas" data-open="imprimir">prontos para imprimir</a>.</p>
+      <p class="sub">Marca o que já tens. O tabuleiro, os peões, o manual e as cartas estão <a href="#cartas" data-open="imprimir">prontos para imprimir</a>.</p>
       <ul class="checks" id="checks">
-        <li><label><input type="checkbox"><span><b>O livro</b> O Monstro das Cores</span></label></li>
-        <li><label><input type="checkbox"><span><b>1 tabuleiro</b> em cartão grosso ou K-line, em forma de círculo</span></label></li>
-        <li><label><input type="checkbox"><span><b>1 figura do Monstro</b> para o centro do tabuleiro</span></label></li>
-        <li><label><input type="checkbox"><span><b>5 peões</b> em forma de pequenos monstros, um por equipa</span></label></li>
-        <li><label><input type="checkbox"><span><b>1 dado</b> com os números de 1 a 6</span></label></li>
-        <li><label><input type="checkbox"><span><b>5 potes transparentes</b>, por exemplo frascos reutilizados, com o nome da equipa</span></label></li>
-        <li><label><input type="checkbox"><span><b>25 bolas</b>, cinco de cada cor: amarelo, azul, vermelho, preto e verde</span></label></li>
-        <li><label><input type="checkbox"><span><b>5 montes de cartas</b>, um por emoção, com a cor da emoção no verso</span></label></li>
+        <li><label><input type="checkbox"><span><b>O livro <i>O Monstro das Cores</i> Pop-up de Anna Llenas</b> – para conhecer melhor a história que inspirou esta aventura.</span></label></li>
+        <li><label><input type="checkbox"><span><b>1 Tabuleiro</b></span></label></li>
+        <li><label><input type="checkbox"><span><b>5 Peões</b> para representar cada equipa no percurso</span></label></li>
+        <li><label><input type="checkbox"><span><b>1 Dado de 1 a 6</b> para descobrir quantas casas podes avançar</span></label></li>
+        <li><label><input type="checkbox"><span><b>5 Potes transparentes</b>, um para cada equipa guardar as suas bolas coloridas</span></label></li>
+        <li><label><input type="checkbox"><span><b>25 Bolas coloridas</b>, 5 de cada cor: vermelha, amarelo, verde, azul e preto</span></label></li>
+        <li><label><input type="checkbox"><span><b>5 Conjuntos de cartas</b> com desafios e atividades relacionados com as emoções</span></label></li>
+        <li><label><input type="checkbox"><span><b>O Manual de Instruções</b></span></label></li>
       </ul>
       <div class="prog" aria-hidden="true"><i id="bar"></i></div>
       <p class="progtxt" id="progtxt" aria-live="polite">0 de 8 materiais prontos</p>
