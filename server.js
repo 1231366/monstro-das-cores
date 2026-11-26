@@ -14,7 +14,7 @@ const MAX_ROOMS = 500, MAX_GUESTS = 7, MAX_MSG = 32 * 1024;
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
-  '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml',
+  '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.pdf': 'application/pdf', '.zip': 'application/zip',
   '.ico': 'image/x-icon', '.json': 'application/json', '.txt': 'text/plain; charset=utf-8'
 };
 

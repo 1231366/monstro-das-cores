@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>A Viagem do Monstro das Cores</title>
-<meta name="description" content="Jogo de tabuleiro de Educação Artística e Física para o 1.º ano. Ajuda o Monstro a arrumar as cinco emoções.">
+<meta name="description" content="Jogo de tabuleiro de Educação Artística e Física. Ajuda o Monstro a arrumar as cinco emoções.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -375,8 +375,56 @@ h2{font-size:clamp(1.9rem,4.2vw,2.9rem)}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
+
+/* ---- v3: cabeçalho, expressões em linha, numeração das regras, footer ---- */
+.brand{flex:none}
+.brand img{width:36px;height:44px;max-width:none;object-fit:contain;flex:none}
+.badges{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.badge{display:flex;flex-direction:column;align-items:center;text-align:center;line-height:1.15;padding:8px 6px;border-radius:16px;font-size:clamp(.78rem,.7rem + .3vw,.95rem);overflow-wrap:anywhere}
+.badge small{font:600 .72em var(--body);opacity:.75;letter-spacing:.02em}
+.steps li{display:grid!important;grid-template-columns:auto 1fr;column-gap:12px;row-gap:6px;align-content:center;justify-content:stretch!important;align-items:center}
+.steps li::before{position:static!important;width:36px!important;height:36px!important;font-size:1.05rem!important;grid-row:1;grid-column:1;flex:none}
+.steps li h3{grid-row:1;grid-column:2;margin:0!important}
+.steps li p{grid-column:1/-1;grid-row:2;margin:0}
+.steps li{padding:16px 18px!important}
+.steps{gap:16px!important}
+footer{padding:44px 0 48px}
+footer .wrap{display:flex;flex-direction:column;align-items:center}
+footer .row{gap:10px;margin-bottom:16px}
+footer .row img{width:40px;height:auto}
+footer b{font-size:clamp(1.05rem,.95rem + .6vw,1.3rem)}
+footer p{max-width:56ch;font-size:.9rem;line-height:1.55;color:#dfe1ff}
+footer p.cr{margin-top:6px;font-size:.82rem;opacity:.75}
+footer .school{margin-top:24px;background:#fff;border-radius:18px;padding:14px 24px;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 6px 0 rgba(0,0,0,.18)}
+footer .school img{display:block;width:clamp(150px,52vw,230px);height:auto}
+@media(max-width:560px){
+  .badges{gap:6px}.badge{padding:7px 4px;border-radius:14px}
+  footer{padding:36px 0 40px}
+  footer .row{gap:8px}footer .row img{width:34px}
+}
+
+/* ---- v3: materiais para imprimir ---- */
+.dgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:8px 4px 16px}
+.dc{background:#fff;border:3px solid var(--ink);border-radius:var(--r2);padding:18px 20px;display:flex;flex-direction:column;gap:6px;box-shadow:0 8px 0 rgba(36,38,77,.12)}
+.dc h3{font-size:1.15rem}
+.dc p{font-size:.95rem;color:var(--ink-soft);line-height:1.4}
+.dc.wide{grid-column:1/-1}
+.dbtns{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:10px}
+.dbtn,.dchip{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 18px;border-radius:99px;border:3px solid var(--ink);background:#fff;color:var(--ink);font:700 1rem var(--body);text-decoration:none;cursor:pointer;touch-action:manipulation;transition:transform .2s var(--pop),box-shadow .2s}
+.dbtn.alt{background:var(--mist)}.dbtn.gold{background:var(--gold)}
+.dbtn small{font:600 .78rem var(--body);opacity:.7}
+.dbtn svg,.dchip svg{width:20px;height:20px;flex:none}
+.dbtn:hover,.dchip:hover{transform:translateY(-3px);box-shadow:0 5px 0 var(--ink)}
+.dbtn:focus-visible,.dchip:focus-visible{outline:4px solid var(--b);outline-offset:3px}
+.dchips{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;padding-top:8px}
+.dchip{background:var(--c);color:var(--tc);padding:8px 14px;justify-content:flex-start;border-radius:18px;min-height:56px}
+.dchip span{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+.dchip small{font:600 .74rem var(--body);opacity:.85}
+@media(max-width:1000px){.dchips{grid-template-columns:repeat(3,minmax(0,1fr))}.dgrid{grid-template-columns:1fr 1fr}.dc.all{grid-column:1/-1}}
+@media(max-width:560px){.dgrid{grid-template-columns:1fr}.dchips{grid-template-columns:1fr 1fr}.dchip{padding:8px 12px}.tabs{max-width:100%}.tabs button{padding:0 11px;font-size:.88rem;white-space:nowrap}}
+.rail[hidden],.dl[hidden]{display:none!important}
 </style>
-<link rel="icon" type="image/webp" href="img/m_y.webp">
+<link rel="icon" type="image/webp" href="img/multi.webp">
 <link rel="stylesheet" href="game.css">
 </head>
 <body>
@@ -384,7 +432,7 @@ h2{font-size:clamp(1.9rem,4.2vw,2.9rem)}
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#topo"><img src="img/m_y.webp" alt="" width="34" height="37"><span>Viagem do Monstro das Cores</span></a>
+    <a class="brand" href="#topo"><img src="img/multi.webp" alt="" width="36" height="44"><span>Viagem do Monstro das Cores</span></a>
     <nav class="main" aria-label="Principal">
       <a href="#jogo">O jogo</a>
       <a href="#jogar">Jogar</a>
@@ -402,7 +450,7 @@ h2{font-size:clamp(1.9rem,4.2vw,2.9rem)}
 <section class="hero">
   <div class="wrap">
     <div>
-      <p class="kicker"><i style="background:var(--y)"></i><i style="background:var(--b)"></i><i style="background:var(--r)"></i><i style="background:var(--k)"></i><i style="background:var(--g)"></i>Jogo de tabuleiro · 1.º ano</p>
+      <p class="kicker"><i style="background:var(--y)"></i><i style="background:var(--b)"></i><i style="background:var(--r)"></i><i style="background:var(--k)"></i><i style="background:var(--g)"></i>Jogo de tabuleiro</p>
       <h1><span class="small">A Viagem do</span>
         <span aria-label="Monstro das Cores">
           <span aria-hidden="true">
@@ -419,7 +467,7 @@ h2{font-size:clamp(1.9rem,4.2vw,2.9rem)}
         <a class="btn alt" href="#regras">Ver as regras</a>
       </div>
       <div class="badges">
-        <span class="badge">Expressão Plástica</span><span class="badge">Expressão Musical</span><span class="badge">Expressão Dramática</span><span class="badge">Expressão Motora</span>
+        <span class="badge"><small>Expressão</small>Plástica</span><span class="badge"><small>Expressão</small>Musical</span><span class="badge"><small>Expressão</small>Dramática</span><span class="badge"><small>Expressão</small>Motora</span>
       </div>
     </div>
     <div class="stage">
@@ -532,6 +580,7 @@ h2{font-size:clamp(1.9rem,4.2vw,2.9rem)}
         <div class="tabs" role="tablist" aria-label="Tipo de carta">
           <button role="tab" id="t1" aria-selected="true" aria-controls="rail">Desafios</button>
           <button role="tab" id="t2" aria-selected="false" aria-controls="rail">Casas especiais</button>
+          <button role="tab" id="t3" aria-selected="false" aria-controls="dl">Para imprimir</button>
         </div>
         <div class="arrows">
           <button type="button" id="prev" aria-label="Carta anterior"><svg viewBox="0 0 24 24" fill="none" stroke="#24264d" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
@@ -540,6 +589,18 @@ h2{font-size:clamp(1.9rem,4.2vw,2.9rem)}
       </div>
     </div>
     <div class="rail" id="rail" role="tabpanel" tabindex="0" aria-label="Galeria de cartas"></div>
+    <div class="dl" id="dl" role="tabpanel" aria-label="Materiais para imprimir" hidden>
+      <div class="dgrid">
+        <article class="dc"><h3>Tabuleiro</h3><p>Para imprimir em tamanho grande e colar em cartão grosso ou K-line.</p>
+          <div class="dbtns"><a class="dbtn" href="downloads/tabuleiro.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg> PDF <small>0,4 MB</small></a><a class="dbtn alt" href="downloads/tabuleiro.png" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg> PNG <small>1,4 MB</small></a></div></article>
+        <article class="dc"><h3>Peões e Monstro do centro</h3><p>Os monstros para recortar: um peão por equipa e a figura do centro.</p>
+          <div class="dbtns"><a class="dbtn" href="downloads/peoes-e-monstro.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg> PDF <small>0,5 MB</small></a></div></article>
+        <article class="dc all"><h3>Tudo num só ficheiro</h3><p>Tabuleiro, peões e todas as cartas de desafio.</p>
+          <div class="dbtns"><a class="dbtn gold" href="downloads/monstro-das-cores-materiais.zip" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg> ZIP <small>3,2 MB</small></a></div></article>
+        <article class="dc wide"><h3>Cartas de desafio</h3><p>Uma folha por emoção, mais as cartas da casa-pote. Imprime em A4.</p>
+          <div class="dchips"><a class="dchip" style="--c:var(--y);--tc:var(--ink)" href="downloads/cartas-alegria.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span><b>Alegria</b><small>PDF · 4 pág.</small></span></a><a class="dchip" style="--c:var(--b);--tc:#fff" href="downloads/cartas-tristeza.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span><b>Tristeza</b><small>PDF · 4 pág.</small></span></a><a class="dchip" style="--c:var(--r);--tc:#fff" href="downloads/cartas-raiva.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span><b>Raiva</b><small>PDF · 4 pág.</small></span></a><a class="dchip" style="--c:var(--k);--tc:#fff" href="downloads/cartas-medo.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span><b>Medo</b><small>PDF · 4 pág.</small></span></a><a class="dchip" style="--c:var(--g);--tc:var(--ink)" href="downloads/cartas-calma.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span><b>Calma</b><small>PDF · 4 pág.</small></span></a><a class="dchip" style="--c:var(--navy);--tc:#fff" href="downloads/cartas-casa-pote.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span><b>Casa-pote</b><small>PDF · 5 pág.</small></span></a></div></article>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -548,7 +609,7 @@ h2{font-size:clamp(1.9rem,4.2vw,2.9rem)}
     <div class="box rv"><img src="img/caixa.webp" alt="Frente da caixa do jogo A Viagem do Monstro das Cores" width="1200" height="800" loading="lazy"></div>
     <div class="rv">
       <h2>O que vais precisar</h2>
-      <p class="sub">Quase tudo se faz com material reciclado. Marca o que já tens.</p>
+      <p class="sub">Marca o que já tens. O tabuleiro, os peões e as cartas estão <a href="#cartas" data-open="imprimir">prontos para imprimir</a>.</p>
       <ul class="checks" id="checks">
         <li><label><input type="checkbox"><span><b>O livro</b> O Monstro das Cores</span></label></li>
         <li><label><input type="checkbox"><span><b>1 tabuleiro</b> em cartão grosso ou K-line, em forma de círculo</span></label></li>
@@ -610,9 +671,11 @@ h2{font-size:clamp(1.9rem,4.2vw,2.9rem)}
 
 <footer>
   <div class="wrap">
-    <div class="row"><img src="img/m_y.webp" alt="" width="50" height="54"><img src="img/m_b.webp" alt="" width="50" height="57"><img src="img/m_r.webp" alt="" width="50" height="72"><img src="img/m_k.webp" alt="" width="50" height="57"><img src="img/m_g.webp" alt="" width="50" height="71"></div>
+    <div class="row"><img src="img/m_y.webp" alt="" width="40" height="43"><img src="img/m_b.webp" alt="" width="40" height="45"><img src="img/m_r.webp" alt="" width="40" height="58"><img src="img/m_k.webp" alt="" width="40" height="45"><img src="img/m_g.webp" alt="" width="40" height="57"></div>
     <b>A Viagem do Monstro das Cores</b>
-    <p>Este site complementa o jogo de tabuleiro: serve para divulgar, consultar e partilhar o recurso, para que possa ser reproduzido e adaptado a diferentes grupos de crianças. Os monstros pertencem ao universo de O Monstro das Cores, de Anna Llenas.</p>
+    <p>Este site complementa o jogo de tabuleiro: serve para divulgar, consultar e partilhar o recurso, para que possa ser reproduzido e adaptado a diferentes grupos de crianças.</p>
+    <p class="cr">Os monstros pertencem ao universo de O Monstro das Cores, de Anna Llenas.</p>
+    <div class="school"><img src="img/paula_frassinetti.webp" alt="Paula Frassinetti" width="338" height="57" loading="lazy"></div>
   </div>
 </footer>
 
@@ -665,15 +728,20 @@ h2{font-size:clamp(1.9rem,4.2vw,2.9rem)}
   /* cartas */
   var D=[['alegria','Alegria'],['tristeza','Tristeza'],['raiva','Raiva'],['medo','Medo'],['calma','Calma']];
   var S=[['alegria','Alegria'],['tristeza','Tristeza'],['raiva','Raiva'],['medo','Medo'],['calma','Calma']];
-  var rail=$('#rail'),t1=$('#t1'),t2=$('#t2');
+  var rail=$('#rail'),t1=$('#t1'),t2=$('#t2'),t3=$('#t3'),dl=$('#dl'),arr=document.querySelector('.cards .arrows');
   function fill(list,p){
     rail.innerHTML=list.map(function(c){return '<figure><img src="img/'+p+c[0]+'.webp" alt="Carta '+c[1]+'" width="760" height="482" loading="lazy"><figcaption>'+c[1]+'</figcaption></figure>'}).join('');
     rail.scrollTo({left:0});
   }
   fill(D,'c_');
-  function tab(a,b,list,p){a.setAttribute('aria-selected','true');b.setAttribute('aria-selected','false');fill(list,p)}
-  t1.addEventListener('click',function(){tab(t1,t2,D,'c_')});
-  t2.addEventListener('click',function(){tab(t2,t1,S,'e_')});
+  function tab(a,list,p){
+    [t1,t2,t3].forEach(function(b){b.setAttribute('aria-selected',b===a)});
+    var imp=a===t3;rail.hidden=imp;dl.hidden=!imp;arr.style.display=imp?'none':'';
+    if(!imp)fill(list,p)}
+  t1.addEventListener('click',function(){tab(t1,D,'c_')});
+  t2.addEventListener('click',function(){tab(t2,S,'e_')});
+  t3.addEventListener('click',function(){tab(t3)});
+  [].forEach.call(document.querySelectorAll('[data-open=imprimir]'),function(a){a.addEventListener('click',function(){tab(t3)})});
   function go(d){var f=rail.querySelector('figure');rail.scrollBy({left:d*(f.offsetWidth+20),behavior:reduce?'auto':'smooth'})}
   $('#prev').addEventListener('click',function(){go(-1)});$('#next').addEventListener('click',function(){go(1)});
   rail.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){go(1);e.preventDefault()}if(e.key==='ArrowLeft'){go(-1);e.preventDefault()}});

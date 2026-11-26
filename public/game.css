@@ -38,7 +38,7 @@ html.gm-lock,html.gm-lock body{overflow:hidden}
 .teamrow{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:center}
 .teamrow img{width:44px;height:48px;object-fit:contain}
 .row{display:flex;flex-wrap:wrap;gap:12px}
-.row>*{flex:1 1 200px}
+.gm .row>*{flex:1 1 200px}
 .gbtn{font:600 1.1rem var(--display);min-height:56px;padding:0 24px;border-radius:99px;border:0;cursor:pointer;background:var(--ink);color:#fff;box-shadow:0 6px 0 #0f1030;display:inline-flex;align-items:center;justify-content:center;gap:10px;touch-action:manipulation;transition:transform .2s var(--pop)}
 .gbtn:active{transform:translateY(4px);box-shadow:none}
 .gbtn.alt{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 3px var(--ink),0 6px 0 var(--line)}
@@ -63,9 +63,9 @@ html.gm-lock,html.gm-lock body{overflow:hidden}
 .bs .hit{fill:transparent;cursor:pointer;touch-action:manipulation}
 .bs .hit{outline:none}.bs .hit:focus-visible{stroke:var(--b);stroke-width:16}
 .bs .ring{fill:rgba(255,211,77,.35);stroke:#ffd34d;stroke-width:22;pointer-events:none;transform-box:fill-box;transform-origin:center;animation:pulse 1s ease-in-out infinite}
-.bs .tk{transition:transform .6s var(--pop)}
-.bs .tk image{filter:drop-shadow(0 10px 8px rgba(0,0,0,.35))}
-.bs .tk.me image{animation:hop 1s ease-in-out infinite}
+.bs .tk{transition:transform .6s var(--pop);pointer-events:none}
+.bs .tk .pw{filter:drop-shadow(0 10px 8px rgba(0,0,0,.35))}
+.bs .tk.me .pw{animation:hop 1s ease-in-out infinite}
 @keyframes hop{50%{transform:translateY(-26px)}}
 .pn{display:flex;flex-direction:column;gap:12px;min-width:0}.pn>*{flex:none}
 .turn{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:var(--r2);border:3px solid var(--ink);background:var(--c,#fff);color:var(--tc,var(--ink))}
@@ -128,7 +128,7 @@ html.gm-lock,html.gm-lock body{overflow:hidden}
 .gconf{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:6}
 .gconf i{position:absolute;top:-20px;width:12px;height:18px;border-radius:3px;animation:fall 2.4s ease-in forwards}
 
-@media(prefers-reduced-motion:reduce){.bs .ring,.bs .tk.me image,.spin{animation:none!important}.bs .tk{transition:none}}
+@media(prefers-reduced-motion:reduce){.bs .ring,.bs .tk.me .pw,.spin{animation:none!important}.bs .tk{transition:none}}
 
 /* pote */
 .jar{display:block;flex:none;overflow:visible}
@@ -142,3 +142,6 @@ html.gm-lock,html.gm-lock body{overflow:hidden}
 .turn .cnt{min-width:0}
 .turn .jar.xl{width:54px;height:62px}
 @media(prefers-reduced-motion:reduce){.jar .bl.new circle,.jar .bl.new path{animation:none}}
+
+.pwi{flex:none;display:block;overflow:visible}
+.dlg .bx .spin{margin-bottom:14px}

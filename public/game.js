@@ -93,6 +93,19 @@ function h(tag,attrs,kids){
 function sv(tag,attrs){var e=document.createElementNS(NS,tag),k;for(k in attrs)e.setAttribute(k,attrs[k]);return e}
 function img(src,w,hh){return h('img',{src:src,alt:'',width:w,height:hh})}
 function sticker(ci,w,hh){return img('img/m_'+KEYS[ci]+'.webp',w||40,hh||44)}
+/* peão da equipa: forma própria (não é um monstro), na cor da equipa e com o número */
+function pawnG(ci,num){
+  var c=COL[KEYS[ci]],tc=TXT[KEYS[ci]],g=sv('g',{'class':'pw'});
+  g.appendChild(sv('ellipse',{cx:0,cy:-10,rx:62,ry:20,fill:c,stroke:'#24264d','stroke-width':9}));
+  g.appendChild(sv('path',{d:'M-48,-14C-48,-62 -22,-78 -18,-112L18,-112C22,-78 48,-62 48,-14Z',fill:c,stroke:'#24264d','stroke-width':9,'stroke-linejoin':'round'}));
+  g.appendChild(sv('ellipse',{cx:0,cy:-112,rx:30,ry:10,fill:c,stroke:'#24264d','stroke-width':9}));
+  g.appendChild(sv('circle',{cx:0,cy:-152,r:38,fill:c,stroke:'#24264d','stroke-width':9}));
+  g.appendChild(sv('path',{d:'M-22,-170C-14,-182 0,-184 10,-180',fill:'none',stroke:'#fff','stroke-width':8,'stroke-linecap':'round',opacity:.7}));
+  var t=sv('text',{x:0,y:-136,'text-anchor':'middle','font-size':'54','font-weight':'700','font-family':'Fredoka,Nunito,sans-serif',fill:tc});t.textContent=String(num);g.appendChild(t);
+  return g}
+function pawnIcon(ci,w,hh,num){
+  var e=sv('svg',{viewBox:'-72 -200 144 214',width:w,height:hh,'class':'pwi','aria-hidden':'true',focusable:'false'});
+  e.appendChild(pawnG(ci,num));return e}
 var X='<svg viewBox="0 0 24 24" fill="none" stroke="#24264d" stroke-width="3.5" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>';
 
 /* ---------- Pote ---------- */
@@ -175,7 +188,7 @@ function screenSetup(n){
   var names=h('div',{style:'display:grid;gap:10px'});
   for(var i=0;i<n;i++){
     var id='tn'+i;
-    names.appendChild(h('div',{class:'teamrow'},[sticker(i,44,48),h('div',{class:'fld'},[
+    names.appendChild(h('div',{class:'teamrow'},[pawnIcon(i,40,60,i+1),h('div',{class:'fld'},[
       h('label',{for:id,class:'lbl',text:ME.mode==='solo'?'Nome da equipa':'Equipa '+TEAMN[i].toLowerCase()}),
       h('input',{id:id,type:'text',maxlength:'16',autocomplete:'off',value:ME.mode==='solo'?'A minha equipa':'Equipa '+TEAMN[i]})])]));
   }
@@ -318,7 +331,7 @@ function renderLobby(){
   }
   var ul=h('ul',{class:'slots','aria-label':'Jogadores'});
   for(var i=0;i<S.max;i++){var t=S.teams[i];
-    if(t){var li=h('li',{style:'background:'+COL[KEYS[t.ci]]+'22;border-color:'+COL[KEYS[t.ci]]},[sticker(t.ci,38,42),h('span',{text:t.name})]);
+    if(t){var li=h('li',{style:'background:'+COL[KEYS[t.ci]]+'22;border-color:'+COL[KEYS[t.ci]]},[pawnIcon(t.ci,30,45,i+1),h('span',{text:t.name})]);
       if(t.pid===ME.id)li.appendChild(h('span',{class:'tag',text:'Tu'}));ul.appendChild(li)}
     else ul.appendChild(h('li',{class:'empty'},[h('span',{text:'À espera de jogador…'})]));}
   lb.appendChild(ul);
@@ -339,8 +352,8 @@ function screenGame(){
   UI.hl=sv('g',{});UI.tk=sv('g',{});svg.appendChild(UI.hl);svg.appendChild(UI.tk);bd.appendChild(svg);
   UI.tokens=S.teams.map(function(t,i){
     var g=sv('g',{'class':'tk'});
-    var m=sv('image',{href:'img/m_'+KEYS[t.ci]+'.webp',x:-100,y:-215,width:200,height:230,preserveAspectRatio:'xMidYMax meet'});
-    g.appendChild(m);UI.tk.appendChild(g);return g});
+    var w=sv('g',{transform:'scale(1.25)'});w.appendChild(pawnG(t.ci,i+1));
+    g.appendChild(w);UI.tk.appendChild(g);return g});
   var pn=h('div',{class:'pn'});
   UI.turn=h('div',{class:'turn'});UI.say=h('p',{class:'say',role:'status','aria-live':'polite'});
   UI.die=h('button',{class:'die2',type:'button','aria-label':'Dado'});for(var i=0;i<9;i++)UI.die.appendChild(h('i'));
@@ -380,7 +393,7 @@ function render(){
   FR=null;var ls=S.last;if(ls&&(ls.t==='gain'||ls.t==='win')){var sk=S.landed+'-'+ls.team;if(!seen[sk]){FR={team:ls.team,e:ls.e};seen[sk]=1}}
   /* vez */
   UI.turn.style.setProperty('--c',c);UI.turn.style.setProperty('--tc',TXT[KEYS[T.ci]]);
-  UI.turn.innerHTML='';UI.turn.appendChild(sticker(T.ci,46,50));
+  UI.turn.innerHTML='';UI.turn.appendChild(pawnIcon(T.ci,34,50,S.turn+1));
   var tt=h('div',{style:'min-width:0;flex:1'});tt.appendChild(h('small',{text:ME.mode==='online'?(T.pid===ME.id?'É a tua vez':'Vez de'):'Vez de'}));tt.appendChild(h('b',{text:T.name}));UI.turn.appendChild(tt);
   UI.turn.appendChild(jarSvg(T,'xl',freshFor(S.turn)));UI.turn.appendChild(h('span',{class:'cnt',text:KEYS.filter(function(k){return T.balls[k]}).length+'/5','aria-label':KEYS.filter(function(k){return T.balls[k]}).length+' de 5 bolas'}));
   /* mensagem */
@@ -405,7 +418,7 @@ function render(){
   UI.pots.innerHTML='';
   S.teams.forEach(function(t,i){
     var li=h('li',{class:i===S.turn?'on':''});
-    li.appendChild(sticker(t.ci,30,34));
+    li.appendChild(pawnIcon(t.ci,22,32,i+1));
     li.appendChild(h('span',{class:'nm',text:t.name+(ME.mode==='online'&&t.pid===ME.id?' (tu)':'')}));
     li.setAttribute('aria-label',t.name+': '+(KEYS.filter(function(k){return t.balls[k]}).map(function(k){return EM[k].n}).join(', ')||'pote vazio'));
     li.appendChild(jarSvg(t,'mini',freshFor(i)));
@@ -441,7 +454,17 @@ function render(){
   if(S.phase==='end'&&!winShown){winShown=true;dlgCard.classList.remove('open');dlgPick.classList.remove('open');openWin()}
 }
 function openCard(me){
-  var T=S.teams[S.turn],ar=AREAS.filter(function(a){return a.k===S.area})[0],e=S.emo;
+  var T=S.teams[S.turn];
+  if(!me){
+    /* as outras equipas não veem a carta nem a expressão: só sabem que a equipa está a jogar */
+    dlgCard.innerHTML='';
+    var wx=h('div',{class:'bx',tabindex:'-1',role:'dialog','aria-label':'A equipa está a fazer o desafio'},[
+      h('div',{class:'spin','aria-hidden':'true'}),
+      h('h3',{text:T.name}),
+      h('p',{class:'q',text:'está a fazer o desafio…'})]);
+    dlgCard.appendChild(wx);dlgCard.classList.add('open');try{wx.focus()}catch(x){}
+    return}
+  var ar=AREAS.filter(function(a){return a.k===S.area})[0],e=S.emo;
   dlgCard.innerHTML='';
   var cardImg=h('img',{class:'cardimg',src:'img/c_'+({y:'alegria',b:'tristeza',r:'raiva',k:'medo',g:'calma'})[e]+'.webp',alt:'Carta '+EM[e].n,width:760,height:482});
   var chip=h('span',{class:'ar',text:ar.n,style:'background:'+COL[ar.c]+';color:'+TXT[ar.c]});
