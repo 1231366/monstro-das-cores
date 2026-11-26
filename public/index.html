@@ -404,7 +404,7 @@ footer .school img{display:block;width:clamp(150px,52vw,230px);height:auto}
 }
 
 /* ---- v3: materiais para imprimir ---- */
-.dgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:8px 4px 16px}
+.dgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding:8px 4px 16px}
 .dc{background:#fff;border:3px solid var(--ink);border-radius:var(--r2);padding:18px 20px;display:flex;flex-direction:column;gap:6px;box-shadow:0 8px 0 rgba(36,38,77,.12)}
 .dc h3{font-size:1.15rem}
 .dc p{font-size:.95rem;color:var(--ink-soft);line-height:1.4}
@@ -420,7 +420,7 @@ footer .school img{display:block;width:clamp(150px,52vw,230px);height:auto}
 .dchip{background:var(--c);color:var(--tc);padding:8px 14px;justify-content:flex-start;border-radius:18px;min-height:56px}
 .dchip span{display:flex;flex-direction:column;line-height:1.15;min-width:0}
 .dchip small{font:600 .74rem var(--body);opacity:.85}
-@media(max-width:1000px){.dchips{grid-template-columns:repeat(3,minmax(0,1fr))}.dgrid{grid-template-columns:1fr 1fr}.dc.all{grid-column:1/-1}}
+@media(max-width:1000px){.dchips{grid-template-columns:repeat(3,minmax(0,1fr))}.dgrid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.dgrid{grid-template-columns:1fr}.dchips{grid-template-columns:1fr 1fr}.dchip{padding:8px 12px}.tabs{max-width:100%}.tabs button{padding:0 11px;font-size:.88rem;white-space:nowrap}}
 .rail[hidden],.dl[hidden]{display:none!important}
 </style>
@@ -593,8 +593,6 @@ footer .school img{display:block;width:clamp(150px,52vw,230px);height:auto}
       <div class="dgrid">
         <article class="dc"><h3>Tabuleiro</h3><p>Para imprimir em tamanho grande e colar em cartão grosso ou K-line.</p>
           <div class="dbtns"><a class="dbtn" href="downloads/tabuleiro.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg> PDF <small>0,4 MB</small></a><a class="dbtn alt" href="downloads/tabuleiro.png" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg> PNG <small>1,4 MB</small></a></div></article>
-        <article class="dc"><h3>Peões e Monstro do centro</h3><p>Os monstros para recortar: um peão por equipa e a figura do centro.</p>
-          <div class="dbtns"><a class="dbtn" href="downloads/peoes-e-monstro.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg> PDF <small>0,5 MB</small></a></div></article>
         <article class="dc all"><h3>Tudo num só ficheiro</h3><p>Tabuleiro, peões e todas as cartas de desafio.</p>
           <div class="dbtns"><a class="dbtn gold" href="downloads/monstro-das-cores-materiais.zip" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg> ZIP <small>3,2 MB</small></a></div></article>
         <article class="dc wide"><h3>Cartas de desafio</h3><p>Uma folha por emoção, mais as cartas da casa-pote. Imprime em A4.</p>
