@@ -453,6 +453,14 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
 @media(max-width:560px){.tabs{display:grid;grid-template-columns:1fr 1fr;width:100%;border-radius:28px;gap:2px}.tabs button{white-space:nowrap;padding:0 8px}}
 .strip{grid-template-columns:repeat(5,minmax(0,1fr))}
 @media(max-width:420px){.strip div{padding:12px 2px;font-size:.62rem;letter-spacing:.01em}}
+.mats .wrap{grid-template-columns:1fr!important;max-width:820px}
+.rail figure.sq{flex:0 0 clamp(190px,calc(100svh - 440px),300px)}
+.rail figure.pt{flex:0 0 clamp(190px,calc((100svh - 330px)*.69),400px)}
+.rail figure.pt img{aspect-ratio:628/908;border-radius:var(--r2);border:3px solid var(--ink);box-shadow:0 8px 0 rgba(36,38,77,.18);background:#fff}
+.rail figure.pt:hover img{transform:none}
+@media(min-width:1001px){.dgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.rail figure.sq{flex:0 0 min(70%,260px)}.rail figure.pt{flex:0 0 min(72%,280px)}}
+@media(max-width:560px){.tabs button:last-child{grid-column:1/-1}}
 </style>
 <link rel="icon" type="image/webp" href="img/multi.webp">
 <link rel="stylesheet" href="game.css">
@@ -601,6 +609,7 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
           <button role="tab" id="t1" aria-selected="true" aria-controls="rail">Cartas</button>
           <button role="tab" id="t2" aria-selected="false" aria-controls="rail">Cartas especiais</button>
           <button role="tab" id="t4" aria-selected="false" aria-controls="rail">Tabuleiro</button>
+          <button role="tab" id="t5" aria-selected="false" aria-controls="rail">Manual de Instruções</button>
           <button role="tab" id="t3" aria-selected="false" aria-controls="dl">Para imprimir</button>
         </div>
         <div class="arrows">
@@ -614,8 +623,10 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
       <div class="dgrid">
         <article class="dc"><h3>Tabuleiro</h3><p>Para imprimir em tamanho grande e colar em cartão grosso ou K-line.</p>
           <div class="dbtns"><a class="dbtn" href="downloads/tabuleiro.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg> PDF <small>0,4 MB</small></a><a class="dbtn alt" href="downloads/tabuleiro.png" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg> PNG <small>1,4 MB</small></a></div></article>
-        <article class="dc all"><h3>Tudo num só ficheiro</h3><p>Tabuleiro, peões e todas as cartas de desafio.</p>
-          <div class="dbtns"><a class="dbtn gold" href="downloads/monstro-das-cores-materiais.zip" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg> ZIP <small>3,2 MB</small></a></div></article>
+        <article class="dc"><h3>Manual de Instruções</h3><p>O manual completo para a turma, com regras e tabuleiro explicado.</p>
+          <div class="dbtns"><a class="dbtn" href="downloads/manual-de-instrucoes.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg> PDF <small>2,9 MB</small></a></div></article>
+        <article class="dc all"><h3>Tudo num só ficheiro</h3><p>Tabuleiro, manual, peões e todas as cartas de desafio.</p>
+          <div class="dbtns"><a class="dbtn gold" href="downloads/monstro-das-cores-materiais.zip" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg> ZIP <small>5,7 MB</small></a></div></article>
         <article class="dc wide"><h3>Cartas de desafio</h3><p>Uma folha por emoção, mais as cartas da casa-pote. Imprime em A4.</p>
           <div class="dchips"><a class="dchip" style="--c:var(--y);--tc:var(--ink)" href="downloads/cartas-alegria.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span><b>Alegria</b><small>PDF · 4 pág.</small></span></a><a class="dchip" style="--c:var(--b);--tc:#fff" href="downloads/cartas-tristeza.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span><b>Tristeza</b><small>PDF · 4 pág.</small></span></a><a class="dchip" style="--c:var(--r);--tc:#fff" href="downloads/cartas-raiva.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span><b>Raiva</b><small>PDF · 4 pág.</small></span></a><a class="dchip" style="--c:var(--k);--tc:#fff" href="downloads/cartas-medo.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span><b>Medo</b><small>PDF · 4 pág.</small></span></a><a class="dchip" style="--c:var(--g);--tc:var(--ink)" href="downloads/cartas-calma.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span><b>Calma</b><small>PDF · 4 pág.</small></span></a><a class="dchip" style="--c:var(--navy);--tc:#fff" href="downloads/cartas-casa-pote.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span><b>Casa-pote</b><small>PDF · 5 pág.</small></span></a></div></article>
       </div>
@@ -625,12 +636,11 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
 
 <section class="mats" id="materiais">
   <div class="wrap">
-    <div class="box rv"><img src="img/caixa.webp" alt="Frente da caixa do jogo A Viagem do Monstro das Cores" width="1200" height="800" loading="lazy"></div>
     <div class="rv">
       <h2>O que vais precisar</h2>
       <p class="sub">Marca o que já tens. O tabuleiro, os peões, o manual e as cartas estão <a href="#cartas" data-open="imprimir">prontos para imprimir</a>.</p>
       <ul class="checks" id="checks">
-        <li><label><input type="checkbox"><span><b>O livro <i>O Monstro das Cores</i> Pop-up de Anna Llenas</b> – para conhecer melhor a história que inspirou esta aventura.</span></label></li>
+        <li><label><input type="checkbox"><span><b>O livro <i>O Monstro das Cores</i> Pop-up de Anna Llenas</b>, para conhecer melhor a história que inspirou esta aventura.</span></label></li>
         <li><label><input type="checkbox"><span><b>1 Tabuleiro</b></span></label></li>
         <li><label><input type="checkbox"><span><b>5 Peões</b> para representar cada equipa no percurso</span></label></li>
         <li><label><input type="checkbox"><span><b>1 Dado de 1 a 6</b> para descobrir quantas casas podes avançar</span></label></li>
@@ -761,25 +771,28 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
   /* cartas */
   var D=[['alegria','Alegria'],['tristeza','Tristeza'],['raiva','Raiva'],['medo','Medo'],['calma','Calma']];
   var S=[['alegria','Alegria'],['tristeza','Tristeza'],['raiva','Raiva'],['medo','Medo'],['calma','Calma']];
-  var rail=$('#rail'),t1=$('#t1'),t2=$('#t2'),t3=$('#t3'),t4=$('#t4'),dl=$('#dl'),arr=document.querySelector('.cards .arrows');
+  var rail=$('#rail'),t1=$('#t1'),t2=$('#t2'),t3=$('#t3'),t4=$('#t4'),t5=$('#t5'),dl=$('#dl'),arr=document.querySelector('.cards .arrows');
   function fill(list,p){
     rail.classList.remove('one');
     rail.innerHTML=list.map(function(c){return '<figure><img src="img/'+p+c[0]+'.webp" alt="Carta '+c[1]+'" width="760" height="482" loading="lazy"><figcaption>'+c[1]+'</figcaption></figure>'}).join('');
     rail.scrollTo({left:0});
   }
-  function board(){
+  function single(src,alt,cap,cls,w,h){
     rail.classList.add('one');
-    rail.innerHTML='<figure class="sq"><img src="img/tabuleiro.webp" alt="O tabuleiro: um círculo de casas, cada uma com um monstro, e cinco raios que vão dar ao centro" width="1300" height="1300"><figcaption>Tabuleiro</figcaption></figure>';
+    rail.innerHTML='<figure class="'+cls+'"><img src="img/'+src+'" alt="'+alt+'" width="'+w+'" height="'+h+'"><figcaption>'+cap+'</figcaption></figure>';
     rail.scrollTo({left:0});
   }
   fill(D,'c_');
   function tab(a,list,p){
-    [t1,t2,t4,t3].forEach(function(b){b.setAttribute('aria-selected',b===a)});
-    var imp=a===t3;rail.hidden=imp;dl.hidden=!imp;arr.style.display=(imp||a===t4)?'none':'';
-    if(a===t4)board();else if(!imp)fill(list,p)}
+    [t1,t2,t4,t5,t3].forEach(function(b){b.setAttribute('aria-selected',b===a)});
+    var imp=a===t3;rail.hidden=imp;dl.hidden=!imp;arr.style.display=(imp||a===t4||a===t5)?'none':'';
+    if(a===t4)single('tabuleiro.webp','O tabuleiro: um círculo de casas, cada uma com um monstro, e cinco raios que vão dar ao centro','Tabuleiro','sq',1300,1300);
+    else if(a===t5)single('manual.webp','Capa do Manual de Instruções de A viagem do Monstro das Cores','Manual de Instruções','pt',628,908);
+    else if(!imp)fill(list,p)}
   t1.addEventListener('click',function(){tab(t1,D,'c_')});
   t2.addEventListener('click',function(){tab(t2,S,'e_')});
   t4.addEventListener('click',function(){tab(t4)});
+  t5.addEventListener('click',function(){tab(t5)});
   t3.addEventListener('click',function(){tab(t3)});
   [].forEach.call(document.querySelectorAll('[data-open=imprimir]'),function(a){a.addEventListener('click',function(){tab(t3)})});
   function go(d){var f=rail.querySelector('figure');rail.scrollBy({left:d*(f.offsetWidth+20),behavior:reduce?'auto':'smooth'})}
