@@ -15,13 +15,6 @@ var AREAS=[
  {k:'dramatica',n:'Expressão Dramática',c:'y'},
  {k:'motora',n:'Expressão Motora',c:'g'}
 ];
-function prompt_(area,e){var m=EM[e].f;
-  if(area==='plastica')return 'Desenha ou modela '+m+' com as cores e as formas que escolheres.';
-  if(area==='musical')return 'Cria sons ou um ritmo que soe a '+m.slice(2)+'. É rápido ou lento? Forte ou suave?';
-  if(area==='dramatica')return 'Representa '+m+' com o rosto, o corpo e a voz, sem dizer a palavra.';
-  return 'Mexe o corpo como se sentisses '+m+': anda, salta ou equilibra-te ao ritmo dessa emoção.';
-}
-
 /* ---------- Tabuleiro: casas lidas da imagem do tabuleiro ---------- */
 var N={},ADJ={};
 function add(id,x,y,type,emo){N[id]={id:id,x:x,y:y,type:type,emo:emo};ADJ[id]=[]}
@@ -54,6 +47,12 @@ function rid(){return Math.random().toString(36).slice(2,10)}
 function rnd(n){return Math.floor(Math.random()*n)}
 function newTeam(ci,name,pid){return {name:name,ci:ci,pos:'c',balls:{y:0,b:0,r:0,k:0,g:0},pid:pid||null}}
 function newGame(teams,code,max){return {v:1,code:code||'',max:max||teams.length,phase:'play',teams:teams,turn:0,step:'roll',dice:0,rolls:0,opts:[],emo:null,area:null,tile:null,bonus:false,landed:0,last:null,winner:-1}}
+/* baralhos: cada emoção tem o seu, e só repete uma carta quando já saíram todas */
+function draw(kind,e){
+  var k=kind+e,L=CARDS[kind][e],d;S.dk=S.dk||{};d=S.dk[k];
+  if(!d||!d.length){d=L.map(function(_,i){return i});for(var i=d.length-1;i>0;i--){var j=rnd(i+1),t=d[i];d[i]=d[j];d[j]=t}
+    if(S.lastc&&S.lastc.k===k&&d[d.length-1]===S.lastc.i&&d.length>1){var q=d.pop();d.unshift(q)}}
+  var c=d.pop();S.dk[k]=d;S.card=c;S.ck=kind;S.lastc={k:k,i:c};S.area=L[c][0]}
 function allBalls(t){return KEYS.every(function(k){return t.balls[k]})}
 
 function applyAct(a,who){
@@ -69,9 +68,11 @@ function applyAct(a,who){
   if(a.t==='move'&&S.step==='move'&&S.opts.indexOf(a.to)>-1){
     T.pos=a.to;S.landed++;S.opts=[];var nd=N[a.to];S.tile=nd.type;
     if(nd.type==='s'){S.step='pick';S.emo=null}
-    else{S.emo=nd.emo;S.area=AREAS[rnd(4)].k;S.step='card'}
+    else{S.emo=nd.emo;draw(nd.type==='p'?'p':'n',nd.emo);S.step='card'}
     return true}
-  if(a.t==='pick'&&S.step==='pick'&&EM[a.e]){S.emo=a.e;S.area=AREAS[rnd(4)].k;S.step='card';return true}
+  if(a.t==='pick'&&S.step==='pick'&&EM[a.e]){S.emo=a.e;draw('n',a.e);S.step='card';return true}
+  if(a.t==='fail'&&S.step==='card'&&S.tile==='p'&&!T.balls[S.emo]){
+    S.last={t:'fail',team:S.turn,e:S.emo};nextTurn();return true}
   if(a.t==='done'&&S.step==='card'){
     var gain=false;
     if(S.tile==='p'&&!T.balls[S.emo]){T.balls[S.emo]=KEYS.filter(function(k){return T.balls[k]}).length+1;gain=true;
@@ -401,7 +402,7 @@ function render(){
   if(S.phase==='end'){m=nm(S.winner)+' encheu o pote!'}
   else if(S.step==='roll'){
     var lc=S.last;
-    var pre=lc&&lc.t==='bonus'?'Casa normal: lança o dado outra vez. ':lc&&lc.t==='gain'?nm(lc.team)+' ganhou a bola '+EM[lc.e].c+'. ':'';
+    var pre=lc&&lc.t==='bonus'?'Casa normal: lança o dado outra vez. ':lc&&lc.t==='gain'?nm(lc.team)+' ganhou a bola '+EM[lc.e].c+'. ':lc&&lc.t==='fail'?nm(lc.team)+' não ganhou a bola '+EM[lc.e].c+' desta vez. ':'';
     m=pre+(me?(ME.mode==='online'?'Lança o dado.':T.name+', lança o dado.'):'A aguardar que '+T.name+' lance o dado.')}
   else if(S.step==='move')m='Saiu '+S.dice+'. '+(me?'Toca numa das casas a brilhar no tabuleiro.':'A aguardar que '+T.name+' escolha a casa.');
   else if(S.step==='pick')m='Casa especial! '+(me?'Escolhe a emoção que queres jogar.':T.name+' está a escolher a emoção.');
@@ -464,16 +465,21 @@ function openCard(me){
       h('p',{class:'q',text:'está a fazer o desafio…'})]);
     dlgCard.appendChild(wx);dlgCard.classList.add('open');try{wx.focus()}catch(x){}
     return}
-  var ar=AREAS.filter(function(a){return a.k===S.area})[0],e=S.emo;
+  var ar=AREAS.filter(function(a){return a.k===S.area})[0],e=S.emo,cd=CARDS[S.ck||'n'][e][S.card]||CARDS.n[e][0],pot=S.ck==='p',can=pot&&!T.balls[e];
   dlgCard.innerHTML='';
   var cardImg=h('img',{class:'cardimg',src:'img/c_'+({y:'alegria',b:'tristeza',r:'raiva',k:'medo',g:'calma'})[e]+'.webp',alt:'Carta '+EM[e].n,width:760,height:482});
   var chip=h('span',{class:'ar',text:ar.n,style:'background:'+COL[ar.c]+';color:'+TXT[ar.c]});
+  var btns=!me?h('p',{class:'q',text:'A aguardar que '+T.name+' cumpra o desafio…'}):
+    can?h('div',{class:'row'},[
+      h('button',{class:'gbtn gold',type:'button',text:'Ganhámos a bola',onclick:function(){send({t:'done'})}}),
+      h('button',{class:'gbtn alt',type:'button',text:'Não conseguimos',onclick:function(){send({t:'fail'})}})]):
+    h('button',{class:'gbtn gold',type:'button',text:'Cumprimos o desafio',onclick:function(){send({t:'done'})}});
   var bx=h('div',{class:'bx',tabindex:'-1',role:'dialog','aria-label':'Desafio de '+EM[e].n},[
     cardImg,chip,
-    h('h3',{text:EM[e].n+' · '+T.name}),
-    h('p',{class:'q',text:'Primeiro: que emoção é esta? Quando já te sentiste assim?'}),
-    h('p',{text:prompt_(S.area,e)}),
-    me?h('button',{class:'gbtn gold',type:'button',text:'Cumprimos o desafio',onclick:function(){send({t:'done'})}}):h('p',{class:'q',text:'A aguardar que '+T.name+' cumpra o desafio…'})]);
+    h('h3',{text:cd[1]}),
+    h('p',{text:cd[2]}),
+    pot?h('p',{class:'cnd',text:'Para ganhar a bola '+({y:'amarela',b:'azul',r:'vermelha',k:'preta',g:'verde'})[e]+': '+cd[3]}):null,
+    btns]);
   dlgCard.appendChild(bx);dlgCard.classList.add('open');
   var b=bx.querySelector('button');try{(b||bx).focus()}catch(x){}
 }
