@@ -444,6 +444,15 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
 .bwrap{margin-block:10px}
 @media(min-width:901px){.mats .wrap{grid-template-columns:.7fr 1.3fr;gap:44px}}
 @media(min-width:901px) and (max-height:780px){.checks{gap:6px}.checks label{min-height:44px;padding-block:6px;gap:12px;font-size:.92rem;line-height:1.35}.mats .sub{margin-bottom:10px;font-size:.95rem}}
+
+.rail.one figure{margin-inline:auto}
+.rail figure.sq{flex:0 0 clamp(240px,calc(100svh - 300px),440px)}
+.rail figure.sq img{border-radius:50%;background:#fff;aspect-ratio:1}
+.rail figure.sq:hover img{transform:none}
+@media(max-width:700px){.rail figure.sq{flex:0 0 min(86%,340px)}}
+@media(max-width:560px){.tabs{display:grid;grid-template-columns:1fr 1fr;width:100%;border-radius:28px;gap:2px}.tabs button{white-space:nowrap;padding:0 8px}}
+.strip{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media(max-width:420px){.strip div{padding:12px 2px;font-size:.62rem;letter-spacing:.01em}}
 </style>
 <link rel="icon" type="image/webp" href="img/multi.webp">
 <link rel="stylesheet" href="game.css">
@@ -459,8 +468,8 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
       <a href="#jogar">Jogar</a>
       <a href="#regras">Regras</a>
       <a href="#tabuleiro">Tabuleiro</a>
-      <a href="#cartas">Cartas</a>
-      <a href="#materiais">Materiais</a>
+      <a href="#cartas">Materiais</a>
+      <a href="#materiais">Lista</a>
       <a href="#fundamento">Fundamentação</a>
       <a href="#pedagogia">Porquê</a>
     </nav>
@@ -586,11 +595,12 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
 <section class="cards" id="cartas">
   <div class="wrap">
     <div class="head rv">
-      <div><h2>As cartas</h2></div>
+      <div><h2>Os materiais</h2></div>
       <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
-        <div class="tabs" role="tablist" aria-label="Tipo de carta">
-          <button role="tab" id="t1" aria-selected="true" aria-controls="rail">Desafios</button>
-          <button role="tab" id="t2" aria-selected="false" aria-controls="rail">Casas especiais</button>
+        <div class="tabs" role="tablist" aria-label="Materiais">
+          <button role="tab" id="t1" aria-selected="true" aria-controls="rail">Cartas</button>
+          <button role="tab" id="t2" aria-selected="false" aria-controls="rail">Cartas especiais</button>
+          <button role="tab" id="t4" aria-selected="false" aria-controls="rail">Tabuleiro</button>
           <button role="tab" id="t3" aria-selected="false" aria-controls="dl">Para imprimir</button>
         </div>
         <div class="arrows">
@@ -599,7 +609,7 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
         </div>
       </div>
     </div>
-    <div class="rail" id="rail" role="tabpanel" tabindex="0" aria-label="Galeria de cartas"></div>
+    <div class="rail" id="rail" role="tabpanel" tabindex="0" aria-label="Galeria de materiais"></div>
     <div class="dl" id="dl" role="tabpanel" aria-label="Materiais para imprimir" hidden>
       <div class="dgrid">
         <article class="dc"><h3>Tabuleiro</h3><p>Para imprimir em tamanho grande e colar em cartão grosso ou K-line.</p>
@@ -751,18 +761,25 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
   /* cartas */
   var D=[['alegria','Alegria'],['tristeza','Tristeza'],['raiva','Raiva'],['medo','Medo'],['calma','Calma']];
   var S=[['alegria','Alegria'],['tristeza','Tristeza'],['raiva','Raiva'],['medo','Medo'],['calma','Calma']];
-  var rail=$('#rail'),t1=$('#t1'),t2=$('#t2'),t3=$('#t3'),dl=$('#dl'),arr=document.querySelector('.cards .arrows');
+  var rail=$('#rail'),t1=$('#t1'),t2=$('#t2'),t3=$('#t3'),t4=$('#t4'),dl=$('#dl'),arr=document.querySelector('.cards .arrows');
   function fill(list,p){
+    rail.classList.remove('one');
     rail.innerHTML=list.map(function(c){return '<figure><img src="img/'+p+c[0]+'.webp" alt="Carta '+c[1]+'" width="760" height="482" loading="lazy"><figcaption>'+c[1]+'</figcaption></figure>'}).join('');
+    rail.scrollTo({left:0});
+  }
+  function board(){
+    rail.classList.add('one');
+    rail.innerHTML='<figure class="sq"><img src="img/tabuleiro.webp" alt="O tabuleiro: um círculo de casas, cada uma com um monstro, e cinco raios que vão dar ao centro" width="1300" height="1300"><figcaption>Tabuleiro</figcaption></figure>';
     rail.scrollTo({left:0});
   }
   fill(D,'c_');
   function tab(a,list,p){
-    [t1,t2,t3].forEach(function(b){b.setAttribute('aria-selected',b===a)});
-    var imp=a===t3;rail.hidden=imp;dl.hidden=!imp;arr.style.display=imp?'none':'';
-    if(!imp)fill(list,p)}
+    [t1,t2,t4,t3].forEach(function(b){b.setAttribute('aria-selected',b===a)});
+    var imp=a===t3;rail.hidden=imp;dl.hidden=!imp;arr.style.display=(imp||a===t4)?'none':'';
+    if(a===t4)board();else if(!imp)fill(list,p)}
   t1.addEventListener('click',function(){tab(t1,D,'c_')});
   t2.addEventListener('click',function(){tab(t2,S,'e_')});
+  t4.addEventListener('click',function(){tab(t4)});
   t3.addEventListener('click',function(){tab(t3)});
   [].forEach.call(document.querySelectorAll('[data-open=imprimir]'),function(a){a.addEventListener('click',function(){tab(t3)})});
   function go(d){var f=rail.querySelector('figure');rail.scrollBy({left:d*(f.offsetWidth+20),behavior:reduce?'auto':'smooth'})}
