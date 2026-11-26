@@ -439,10 +439,7 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
   .steps li:nth-child(-n+4){grid-column:span 3}
 }
 
-/* ---- v4: tabuleiro inteiro, sem recorte circular ---- */
-.bwrap,.bwrap.zoom{border-radius:28px!important}
-.bwrap img{border-radius:28px!important;border:0!important;background:#fff;box-shadow:0 0 0 6px var(--gold),0 30px 60px rgba(0,0,0,.4)}
-.bwrap .ov{inset:0!important;width:100%!important;height:100%!important;border-radius:28px!important}
+/* ---- v4: tabuleiro circular, aro dourado completo ---- */
 .board-sec .wrap{overflow:visible}
 .bwrap{margin-block:10px}
 </style>
@@ -460,9 +457,9 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
       <a href="#jogar">Jogar</a>
       <a href="#regras">Regras</a>
       <a href="#tabuleiro">Tabuleiro</a>
-      <a href="#fundamento">Fundamentação</a>
       <a href="#cartas">Cartas</a>
       <a href="#materiais">Materiais</a>
+      <a href="#fundamento">Fundamentação</a>
       <a href="#pedagogia">Porquê</a>
     </nav>
   </div>
@@ -583,19 +580,6 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
 </section>
 
 
-<section class="fund" id="fundamento">
-  <div class="wrap">
-    <div class="head rv"><h2>Fundamentação teórica</h2><p>As quatro expressões nas Aprendizagens Essenciais do 1.º Ciclo (2018) e a sua presença no jogo.</p></div>
-    <div class="ftabs" role="tablist" aria-label="Área de expressão">
-      <button role="tab" aria-selected="true" data-i="0" style="--c:var(--r);--tc:#fff">Artes Visuais</button>
-      <button role="tab" aria-selected="false" data-i="1" style="--c:var(--b);--tc:#fff">Música</button>
-      <button role="tab" aria-selected="false" data-i="2" style="--c:var(--y);--tc:var(--ink)">Expressão Dramática</button>
-      <button role="tab" aria-selected="false" data-i="3" style="--c:var(--g);--tc:var(--ink)">Educação Física</button>
-    </div>
-    <div class="fpanel" id="fpanel" role="tabpanel" aria-live="polite"></div>
-    <p class="fnote rv">Uma mesma emoção pode ser representada através de cores e formas, explorada por meio de sons e ritmos, interpretada com gestos e expressões faciais ou comunicada através do movimento corporal. Cada linguagem acrescenta uma perspetiva própria.</p>
-  </div>
-</section>
 
 <section class="cards" id="cartas">
   <div class="wrap">
@@ -646,6 +630,20 @@ footer .school img{display:block;width:clamp(200px,64vw,320px);height:auto}
       <div class="prog" aria-hidden="true"><i id="bar"></i></div>
       <p class="progtxt" id="progtxt" aria-live="polite">0 de 8 materiais prontos</p>
     </div>
+  </div>
+</section>
+
+<section class="fund" id="fundamento">
+  <div class="wrap">
+    <div class="head rv"><h2>Fundamentação teórica</h2><p>As quatro expressões nas Aprendizagens Essenciais do 1.º Ciclo (2018) e a sua presença no jogo.</p></div>
+    <div class="ftabs" role="tablist" aria-label="Área de expressão">
+      <button role="tab" aria-selected="true" data-i="0" style="--c:var(--r);--tc:#fff">Artes Visuais</button>
+      <button role="tab" aria-selected="false" data-i="1" style="--c:var(--b);--tc:#fff">Música</button>
+      <button role="tab" aria-selected="false" data-i="2" style="--c:var(--y);--tc:var(--ink)">Expressão Dramática</button>
+      <button role="tab" aria-selected="false" data-i="3" style="--c:var(--g);--tc:var(--ink)">Educação Física</button>
+    </div>
+    <div class="fpanel" id="fpanel" role="tabpanel" aria-live="polite"></div>
+    <p class="fnote rv">Uma mesma emoção pode ser representada através de cores e formas, explorada por meio de sons e ritmos, interpretada com gestos e expressões faciais ou comunicada através do movimento corporal. Cada linguagem acrescenta uma perspetiva própria.</p>
   </div>
 </section>
 
